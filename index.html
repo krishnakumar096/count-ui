@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<title>Countdown</title>
+
+<head>
+    <style>
+        /* Container holding the image and the text */
+        .container {
+            position: relative;
+        }
+
+        /* Bottom right text */
+        #clockdiv {
+            position: absolute;
+            top: 20px;
+            left: 60px;
+            /* background-color: black; */
+            color: #bfe6ff;
+            /* padding-left: 20px; */
+            /* padding-right: 20px; */
+            font-weight: 100;
+            font-family: sans-serif;
+            font-size: 30px;
+        }
+
+        #clockdiv>div {
+            padding: 10px;
+            border-radius: 3px;
+            /* background: #326690; */
+            display: inline-block;
+        }
+
+        #clockdiv div>span {
+            padding: 10px;
+            border-radius: 3px;
+            /* background: #00BF96; */
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="./imgaes/beach.png" alt="Norway" style="width:100%;">
+        <div id="clockdiv">
+            <h2>Countdown For Freedom</h2>
+            <div>
+                <span class="days" id="day"></span>
+                <div class="smalltext">Days</div>
+            </div>
+            <div>
+                <span class="hours" id="hour"></span>
+                <div class="smalltext">Hours</div>
+            </div>
+            <div>
+                <span class="minutes" id="minute"></span>
+                <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+                <span class="seconds" id="second"></span>
+                <div class="smalltext">Seconds</div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var deadline = new Date("September 24, 2021").getTime();
+
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var t = deadline - now;
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((t % (1000 * 60)) / 1000);
+            document.getElementById("day").innerHTML = days;
+            document.getElementById("hour").innerHTML = hours;
+            document.getElementById("minute").innerHTML = minutes;
+            document.getElementById("second").innerHTML = seconds;
+            if (t < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "TIME UP";
+                document.getElementById("day").innerHTML = '0';
+                document.getElementById("hour").innerHTML = '0';
+                document.getElementById("minute").innerHTML = '0';
+                document.getElementById("second").innerHTML = '0';
+            }
+        }, 1000); 
+    </script>
+</body>
+
+</html>
